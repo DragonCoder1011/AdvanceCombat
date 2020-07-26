@@ -1,0 +1,167 @@
+######################
+#Main Combat Settings#
+######################
+#This plugin supports 1.8 - 1.15 and if you're using 1.8 ignore some of the combat mechanic options unless you want to adjust kb + potion options.
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ▶ General Message Options ◀
+#Prefix before messages
+prefix: "&7[&c&lAC&7] "
+#Triggered when the damager hits the target.
+damager-combat-message: "&fYou have entered into combat for hitting %player% for %time% seconds! Don't log out!"
+
+#Triggered when the target is hit from the damager.
+target-combat-message: "&fYou were combat tagged by %player%. You're in combat for %time% seconds! Don't log out!"
+
+#Triggered when someone uses the /ct command
+in-combat-message: "&fYou're in combat for %time% seconds!"
+
+#Triggered when someone uses /ct to indicate if they're not in combat, and when someones timer is 0.
+not-in-combat-message: "&fYou're no longer in combat!"
+
+#Triggered when a higher up untags a player with /ac untag <player>, and message is sent if that player isn't tagged.
+player-not-in-combat-message: "&fThat player is not in combat!"
+
+#Triggered when a higher up untags a player with /ac untag <player>.
+untagged-player-message: "&fYou successfully untagged %player%!"
+
+#Sent to the tagged player when untagged by /ac untag <player>
+target-untagged-message: "&fYou were untagged by a higher up!"
+
+#Triggered when the player targets an entity
+damager-combat-entity-message: "&fYou have entered into combat for hitting a %entity%! You're in combat for %time% seconds! Don't log out!"
+
+#Triggered when the entity targets the player.
+entity-combat-damager-message: "&fYou have entered combat from an %entity% hitting you! You're in combat for %time% seconds! Don't log out!"
+
+#Action bar message when someone enters combat
+actionbar-message: "&aCT: &f%time%"
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ▶ Prevention Options ◀
+#Put what worlds you don't want combat to exist in
+disabled-worlds:
+  - "flat"
+
+#There are two options here. If Whitelist is enabled that means all commands that are in the "Listed Commands" section means that these commands will work in combat.
+#If Whitelist is set to false then it turns into black list, meaning all commands work except the ones that are listed in the "Listed Commands".
+whitelist-mode: true
+
+listed-commands:
+  - "spawn"
+  - "help"
+
+#Triggered when a player tries to execute a command that isn't allowed in combat.
+cant-do-command-message: "&fYou cannot do this command while in combat!"
+
+#Disable the eating of chorus fruit while in combat
+disable-chorus-fruit: false
+#If the option of eating chorus fruit while in combat is disabled don't worry about this feature.
+chorus-fruit-cooldown-enabled: false
+#If toggle option was set to true, edit the options below.
+#Option to edit the chorus fruit cool down.
+chorus-fruit-cooldown-delay: 0
+#Triggered when the cooldown is activated.
+chorus-fruit-cooldown-message: "&fYou must wait %time% seconds before eating chorus fruit"
+
+#Disable the use of ender pearls while in combat
+disable-enderpearl-use: false
+#If the option of ender pearls while in combat is disabled don't worry about this feature.
+ender-pearl-cooldown-enabled: true
+##If toggle option was set to true, edit the options below.
+#Option to edit the ender pearl cool down.
+ender-pearl-cooldown-delay: 5
+#Triggered when the cooldown is activated
+ender-pearl-cooldown-message: "&fYou must wait %time% seconds before using another ender pearl"
+
+#Disable the use of totems of undying when in combat
+disable-totem-of-undying: true
+
+#Option to prevent players losing their items when kicked for a certain reason:
+disconnect-reasons:
+  - "Timed Out"
+  - "test"
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ▶ Combat Options ◀
+#If you're using 1.8 you can ignore hit speed.
+
+#Combat timer indicates how long the player will be in combat for.
+combat-timer: 30
+
+#Option to set attack speed. P.S keep it 16 if you want to prevention the hit delay. 1.9+ Option
+hit-speed: 16
+
+#Option to toggle broad cast messages when logging out.
+broadcast-combatlog: true
+#If toggle option was set to true you can edit the options below.
+#Tirggered when the player logs out in combat
+broadcast-message: "&f%player% has logged out while in combat!"
+
+#Lightning Animation when someone logs out.
+logout-animation: true
+
+#Option to make pot drinking + pot splashing faster
+fast-pot: true
+#If toggle option was set to true, edit the options below.
+#Option to set the speed of the potion splash
+splash-pot-speed: 1.0
+
+#Option to set the speed of drinking the potion
+
+#Set an effect on first hit upon the target.
+blood-effect-player: true
+
+#Option to toggle knockback on or off. #1.9+ option
+knockback-patch: false
+
+#If toggle option was set to true you can edit the knockback horizontal and vertical
+#Option to edit the kb vertically / horizontally.
+kb-vertical: 0.00125
+kb-horizontal: 0.00125
+
+#Option of players being able to swap items or not
+allow-swap-items: true
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ▶ Mob Options ◀
+#Option to toggle mob combat
+enable-mob-combat: false
+
+#Option to enable what mobs will combat tag players.
+mob-list:
+  - "ZOMBIE"
+  - "SKELETON"
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ▶ Hook Options ◀
+#Here you put in what version of WG you're using. Advance Combat only supports WG 6.2+. #If you're using WorldGuard 6.2 put 6 or if you're using
+#WorldGuard 7 Put 7 instead!
+WorldGuardVersion: 7
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ▶ Other Options ◀
+#Customize the use of the command alias to make it easier to access commands for Advance Combat
+command-alias:
+  - "acombat"
+
+#Option to edit the help list
+command-help:
+  - "&f/ac help to access the help page!"
+  - "&f/ac untag <player> allows you to untag a player who is in combat!"
+  - "&f/ac list lists all that players that are in combat!"
+  - "&f/ac reload allows you to reload the config file!"
+  - "&f/ac process allows you to process combat logger logs."
+  - "&f/ac stopprocess stops the process timer. Note, that the process will start over!"
+
+#Triggered if a player is null in a command!
+command-target-null-message: "&cThat player does not exist!"
+
+#Triggered when the list of players in combat is empty!
+player-list-empty-message: "&7No one is in combat!"
+
+#Triggered when the list of players in combat are show!
+players-in-combat-list-messages: "&6%player% &7is in combat!"
+
+#Triggered when the player reloads the config!
+config-reload-message: "&fYou have successfully reloaded the config!"
+
+#Option to test out debug if needed.
+debug: false
+

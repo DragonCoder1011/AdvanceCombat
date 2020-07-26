@@ -1,0 +1,4 @@
+# Project exclude paths
+/target/
+/WorldGuard6_2/target/
+/WorldGuard7/target/
