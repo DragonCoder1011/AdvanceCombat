@@ -12,13 +12,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import java.util.List;
-
 public class PlayerCombatListener implements Listener {
 
     private final CombatUtil combatUtil = AdvanceCombat.getInstance().getCombatUtil();
     private final ConfigUtil configUtil = ConfigUtil.getInstance();
-    private final List<String> worldList = ConfigUtil.getInstance().getStringList("disabled-worlds");
 
     @EventHandler
     public void onTagWG6(EntityDamageByEntityEvent e) {
@@ -28,10 +25,8 @@ public class PlayerCombatListener implements Listener {
             if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
                 Player damager = (Player) e.getDamager();
                 Player target = (Player) e.getEntity();
-                for (String disabledWorlds : worldList) {
-                    if (damager.getWorld().getName().equalsIgnoreCase(disabledWorlds) && target.getWorld().getName().equalsIgnoreCase(disabledWorlds)) {
-                        return;
-                    }
+                if (combatUtil.isinWorld(damager) && combatUtil.isinWorld(target)) {
+                    return;
                 }
 
                 if (WorldGuardHook6_2.isNotInPVP(damager) || WorldGuardHook6_2.isNotInPVP(target)) {
@@ -61,10 +56,8 @@ public class PlayerCombatListener implements Listener {
 
                 if (damager.getShooter() instanceof Player) {
                     Player shooter = (Player) damager.getShooter();
-                    for (String disabledWorlds : worldList) {
-                        if (shooter.getWorld().getName().equalsIgnoreCase(disabledWorlds) && target.getWorld().getName().equalsIgnoreCase(disabledWorlds)) {
-                            return;
-                        }
+                    if (combatUtil.isinWorld(shooter) && combatUtil.isinWorld(target)) {
+                        return;
                     }
 
                     if (WorldGuardHook6_2.isNotInPVP(shooter) || WorldGuardHook6_2.isNotInPVP(target)) {
@@ -88,10 +81,8 @@ public class PlayerCombatListener implements Listener {
             if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
                 Player damager = (Player) e.getDamager();
                 Player target = (Player) e.getEntity();
-                for (String disabledWorlds : worldList) {
-                    if (damager.getWorld().getName().equalsIgnoreCase(disabledWorlds) && target.getWorld().getName().equalsIgnoreCase(disabledWorlds)) {
-                        return;
-                    }
+                if (combatUtil.isinWorld(damager) && combatUtil.isinWorld(target)) {
+                    return;
                 }
 
                 if (WorldGuardHook7.isNotInPVP(damager) || WorldGuardHook7.isNotInPVP(target)) {
@@ -119,11 +110,10 @@ public class PlayerCombatListener implements Listener {
 
                 if (damager.getShooter() instanceof Player) {
                     Player shooter = (Player) damager.getShooter();
-                    for (String disabledWorlds : worldList) {
-                        if (shooter.getWorld().getName().equalsIgnoreCase(disabledWorlds) && target.getWorld().getName().equalsIgnoreCase(disabledWorlds)) {
-                            return;
-                        }
+                    if (combatUtil.isinWorld(shooter) && combatUtil.isinWorld(target)) {
+                        return;
                     }
+
 
                     if (WorldGuardHook7.isNotInPVP(shooter) || WorldGuardHook7.isNotInPVP(target)) {
                         return;

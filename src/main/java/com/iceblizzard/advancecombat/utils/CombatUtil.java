@@ -223,13 +223,15 @@ public class CombatUtil {
     @Checks if the player is in a world where combat exists or not
 
      */
-    public void checkWorlds(Player player) {
+    public boolean isinWorld(Player player) {
         List<String> worlds = configUtil.getStringList("disabled-worlds");
         for (String allWorlds : worlds) {
             if (player.getWorld().getName().equalsIgnoreCase(allWorlds)) {
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     /*

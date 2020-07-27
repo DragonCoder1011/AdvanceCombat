@@ -30,7 +30,7 @@ public class CoolDownUtils {
 
 
     private void setCooldown(Player player, String key, long delay) {
-        cooldowns.put(userManager.getUser(player.getName()), key, System.currentTimeMillis() + (delay * 1000));
+        cooldowns.put(userManager.getUser(player.getName()), key, System.currentTimeMillis() + (TimeUnitUtil.secondToMilli(delay)));
     }
 
 
@@ -49,7 +49,7 @@ public class CoolDownUtils {
             long remainingTime = getCooldown(player, cooldownKey) - System.currentTimeMillis();
             String prefix = configUtil.getString("prefix");
             String message = configUtil.getString(path);
-            message = message.replace("%time%", String.valueOf(remainingTime / 1000));
+            message = message.replace("%time%", String.valueOf(TimeUnitUtil.milliToSecond(remainingTime)));
             player.sendMessage(StringUtils.format(prefix + message));
             event.setCancelled(true);
         } else {

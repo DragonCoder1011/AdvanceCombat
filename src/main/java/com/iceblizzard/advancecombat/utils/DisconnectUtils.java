@@ -17,6 +17,7 @@ public class DisconnectUtils {
     }
 
     public static void killPlayerOnKick(Player player, String reason) {
+        if (!combatUtil.inCombat(player)) return;
         if (isKickReasonIgnored(reason)) return;
         if (combatUtil.inCombat(player)) {
             if (instance.getBoolean("broadcast-combatlog")) {
@@ -36,6 +37,7 @@ public class DisconnectUtils {
     }
 
     public static void killPlayerOnQuit(Player player) {
+        if (!combatUtil.inCombat(player)) return;
         if (combatUtil.inCombat(player)) {
             if (instance.getBoolean("broadcast-combatlog")) {
                 String prefix = instance.getString("prefix");
@@ -49,7 +51,7 @@ public class DisconnectUtils {
             }
 
             player.setHealth(0);
-           combatUtil.removeFromCombat(player);
+            combatUtil.removeFromCombat(player);
         }
     }
 }

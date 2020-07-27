@@ -31,7 +31,9 @@ public class EntityCombatListener implements Listener {
         if (e.getEntity() instanceof Player && e.getDamager() instanceof LivingEntity) {
             Player target = (Player) e.getEntity();
             LivingEntity damager = (LivingEntity) e.getDamager();
-            combatUtil.checkWorlds(target);
+            if(combatUtil.isinWorld(target)){
+                return;
+            }
             FeaturesUtil.playBloodEffectEntity(target, damager);
             combatUtil.combatTagTargetByEntity(target, damager);
         }
@@ -46,7 +48,9 @@ public class EntityCombatListener implements Listener {
                 return;
             }
             LivingEntity shooter = (LivingEntity) damager.getShooter();
-            combatUtil.checkWorlds(target);
+            if(combatUtil.isinWorld(target)){
+                return;
+            }
             FeaturesUtil.playBloodEffectEntity(target, shooter);
             combatUtil.combatTagTargetByEntity(target, shooter);
         }
@@ -56,7 +60,9 @@ public class EntityCombatListener implements Listener {
         if (e.getDamager() instanceof Player) {
             Player damager = (Player) e.getDamager();
             LivingEntity target = (LivingEntity) e.getEntity();
-            combatUtil.checkWorlds(damager);
+            if(combatUtil.isinWorld(damager)){
+                return;
+            }
             combatUtil.combatTagDamagerByEntity(damager, target);
         }
         /*
@@ -71,7 +77,9 @@ public class EntityCombatListener implements Listener {
             if (projectile.getShooter() instanceof Player) {
                 Player shooter = (Player) projectile.getShooter();
                 LivingEntity target = (LivingEntity) e.getEntity();
-                combatUtil.checkWorlds(shooter);
+                if(combatUtil.isinWorld(shooter)){
+                    return;
+                }
                 combatUtil.combatTagDamagerByEntity(shooter, target);
             }
         }

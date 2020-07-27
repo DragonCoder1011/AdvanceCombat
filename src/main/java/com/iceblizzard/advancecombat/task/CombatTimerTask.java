@@ -6,6 +6,7 @@ import com.iceblizzard.advancecombat.user.UserManager;
 import com.iceblizzard.advancecombat.utils.CombatUtil;
 import com.iceblizzard.advancecombat.utils.ConfigUtil;
 import com.iceblizzard.advancecombat.utils.StringUtils;
+import com.iceblizzard.advancecombat.utils.TimeUnitUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -22,7 +23,7 @@ public class CombatTimerTask implements Runnable {
             if (combatUtil.inCombat(player) && combatUtil.getTaggedList().get(userManager.getUser(player.getName())) > System.currentTimeMillis()) {
                 long remainingTime = combatUtil.getTaggedList().get(userManager.getUser(player.getName())) - System.currentTimeMillis();
                 String actionBarMessage = configUtil.getString("actionbar-message");
-                actionBarMessage = actionBarMessage.replace("%time%", String.valueOf(remainingTime / 1000));
+                actionBarMessage = actionBarMessage.replace("%time%", String.valueOf(TimeUnitUtil.milliToSecond(remainingTime)));
                 ActionBar.sendActionBar(player, StringUtils.format(actionBarMessage));
             }
             if (combatUtil.inCombat(player) && combatUtil.getTaggedList().get(userManager.getUser(player.getName())) < System.currentTimeMillis()) {
